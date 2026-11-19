@@ -297,3 +297,17 @@ function nent_img_alts($html) {
 
 /* 2026 redesign (new header, footer, homepage and page banners) – see /nent/setup.php. */
 if (file_exists(get_stylesheet_directory() . '/nent/setup.php')) { require_once get_stylesheet_directory() . '/nent/setup.php'; }
+
+/* Old design: Elementor Pro's sticky-header library must be loaded, or Elementor's
+   page script stops early (breaking the full-width hero). Added Nov 2026 on rollback. */
+add_action('wp_enqueue_scripts', function () {
+    if (function_exists('nent_rd') && nent_rd()) return;
+    if (wp_script_is('e-sticky', 'registered')) wp_enqueue_script('e-sticky');
+}, 10000);
+
+/* Old design: the hero slider can size itself before Elementor stretches its section to
+   full width (now that pages load faster). A resize nudge after load makes it re-measure. */
+add_action('wp_footer', function () {
+    if (function_exists('nent_rd') && nent_rd()) return;
+    echo "<script>window.addEventListener('load',function(){if(document.querySelector('sr7-module')){setTimeout(function(){window.dispatchEvent(new Event('resize'));},200);}});</script>\n";
+}, 99);
