@@ -47,3 +47,12 @@ If the theme files are ever lost from the server, upload the contents of `wordpr
   - `header-bar.php`, `footer-bar.php`, `page-hero.php`: site header, footer and page banners
   - `nent.css`, `nent.js`: styles and interactions
   - `lenis.min.js`: smooth scrolling (MIT licence)
+
+## Holiday speech therapy campaign page
+
+`wordpress-plugins/nent-holiday-campaign/` is a small plugin, installed and active on the live site, that adds
+[nairobientclinic.com/holiday-speech-therapy/](https://nairobientclinic.com/holiday-speech-therapy/), a standalone landing page with a booking form.
+
+- Each booking is emailed to the site's admin address and saved under **Holiday Bookings** in the WordPress admin.
+- To set the holiday offer line, the notification email or the WhatsApp number, go to **Holiday Bookings → Settings**.
+- Deactivating the plugin removes the page's design. The WordPress page itself stays, so delete it too if the campaign ends.
